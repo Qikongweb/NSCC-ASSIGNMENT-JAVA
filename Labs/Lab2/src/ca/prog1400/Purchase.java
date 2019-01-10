@@ -12,10 +12,10 @@ public class Purchase {
         cost = scanner.nextInt() ;
         if(cost < 50 ){
             total = cost + 10;
-            System.out.println("Your total is " + total);
+            System.out.println("Your total is $" + total);
         }else{
             total = cost + 0;
-            System.out.println("Your total is " + total + "and free shipping!!");
+            System.out.println("Your total is $" + total + " and free shipping!!");
         }
     }
 }
