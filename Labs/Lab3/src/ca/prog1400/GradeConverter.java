@@ -6,12 +6,11 @@ public class GradeConverter {
     private static double[] gradeNumber = {4,3,2,1,0};
 
     public static void main(String[] args) {
-        System.out.println("Enter a letter grade: ");
+        System.out.println("Welcome :)");
+        System.out.println("What is your grade?? ");
         Scanner scanner = new Scanner(System.in);
         String myPoint = String.format("Your grade is %.2f", GradeConverter.converter(scanner.next()));
         System.out.println(myPoint);
-
-
     }
     private static double converter(String userLetter) {
         for (int i = 0; i < gradeLetter.length; i++) {
