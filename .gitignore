@@ -25,3 +25,5 @@ hs_err_pid*
 #Files to exclude for IntelliJ
 .idea/
 *.iml
+*.docx
+*.doc
