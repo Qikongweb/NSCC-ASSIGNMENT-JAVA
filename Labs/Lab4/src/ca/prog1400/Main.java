@@ -1,14 +1,19 @@
 package ca.prog1400;
 
-import java.awt.*;
-
 public class Main {
 
     public static void main(String[] args) {
-    House myHouse1 = new House(30,40,true);
-    House myHouse2 = new House(40,40, false);
-    myHouse1.printTotalArea();
-    myHouse2.printTotalArea();
 
+        Food picnicBasket[] = {new Food("cucumber", "Vegetable")
+                , new Food("pork", "Meat")
+                , new Food("orange", "Fruit")};
+
+        for (Food ch : picnicBasket) {
+            if (!ch.myFavoriteFood.toLowerCase().equals(ch.getFoodType().toLowerCase())) {
+                ch.denyIt();
+            } else {
+                ch.eatIt();
+            }
+        }
     }
 }
