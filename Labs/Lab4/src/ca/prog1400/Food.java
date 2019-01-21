@@ -16,11 +16,11 @@ public class Food {
     }
 
     public void eatIt() {
-        System.out.println("You just ate the " + this.foodName);
+        System.out.println("You just ate the " + this.foodName + ".");
     }
 
     public void denyIt() {
-            System.out.println("Not eating that!  I hate " + this.foodType);
+            System.out.println("Not eating that!  I hate " + this.foodType+ ".");
     }
 
 }
