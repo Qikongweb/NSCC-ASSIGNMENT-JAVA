@@ -1,4 +1,4 @@
-package ca.prog1400;
+package prog1400;
 
 
 public class Car {
