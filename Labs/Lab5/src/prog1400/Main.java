@@ -5,11 +5,11 @@ public class Main {
 
         Circle [] circles = new Circle[3];
         circles[0] = new Circle();
-        circles[1] = new Circle(2);
-        circles[2] = new Circle(3,"blue");
+        circles[1] = new Circle(9);
+        circles[2] = new Circle(8,"blue");
 
         for(Circle circle : circles){
-            System.out.println(String.format("The total area is %.3f.", circle.getArea()));
+            System.out.println(String.format("The total area is %.2f.", circle.getArea()));
             System.out.println(circle.toString());
         }
     }

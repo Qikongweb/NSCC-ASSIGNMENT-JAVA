@@ -25,7 +25,7 @@ public class Circle {
 
     //  To calculate and return the total area of a circle object.
     public double getArea(){
-        return this.radius * 2 *  Math.PI;
+        return this.radius * this.radius *  Math.PI;
     }
     public String toString(){
         return String.format("Radius = %.2f, Colour = %s",this.radius,this.colour);
