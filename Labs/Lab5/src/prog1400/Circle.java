@@ -27,6 +27,7 @@ public class Circle {
     public double getArea(){
         return this.radius * this.radius *  Math.PI;
     }
+    
     public String toString(){
         return String.format("Radius = %.2f, Colour = %s",this.radius,this.colour);
     }
