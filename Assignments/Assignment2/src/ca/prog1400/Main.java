@@ -26,28 +26,28 @@ public class Main {
                 buttons,
                 buttons[0]);
 
-        int year = 0;
-        String str ;
+
 
         switch (Opt) {
             case 0:
-                students.add(new Student(openInputPopup("Enter Student Name"),
-                        openInputPopup("Enter Student Address"),
-                        checkValid(Opt)));
+                students.add(new Student(checkValid(Opt),openInputPopup("Enter Student Name"),
+                        openInputPopup("Enter Student Address")));
                 break;
             case 1:
                 staffs.add(new Staff(openInputPopup("Enter Staff Name"),
                         openInputPopup("Enter Staff Address"),
                         checkValid(Opt)));
                 break;
-            case 2:
-                break;
-            default:
-                break;
         }
 
+        String result="";
+        int idx=1;
+        for(Student student : students){
+            result += Integer.toString(idx++);
+            result += student.toString();
+        }
 
-
+        openMessage(result);
 
 
 
@@ -64,12 +64,12 @@ public class Main {
 
                 //Display warning.
                 if (!str.matches("^[0-9]*$")) {
-                    openValidateMessage("Please enter a number");
+                    openMessage("Please enter a number");
                 }else{
                     year = Integer.parseInt(str);
                     //Check range
                     if (year < 1 || year > 4) {
-                        openValidateMessage("Please enter a number between 1 and 4.");
+                        openMessage("Please enter a number between 1 and 4.");
                     }
                 }
             } while (!str.matches("^[0-9]*$") || (year < 1 || year > 4));
@@ -80,12 +80,12 @@ public class Main {
 
                 //Display warning.
                 if (!str.matches("^[0-9]*$")) {
-                    openValidateMessage("Please enter a number");
+                    openMessage("Please enter a number");
                 }else{
                     year = Integer.parseInt(str);
                     //Check range
                     if (year <= 0 || year >= 30) {
-                        openValidateMessage("Please enter a number between 1 and 29.");
+                        openMessage("Please enter a number between 1 and 29.");
                     }
                 }
             } while (!str.matches("^[0-9]*$") || (year <= 0 || year >= 30));
@@ -101,7 +101,7 @@ public class Main {
                 JOptionPane.QUESTION_MESSAGE);
     }
 
-    private static void openValidateMessage(String message) {
+    private static void openMessage(String message) {
         JOptionPane.showMessageDialog(null,
                 message);
     }
