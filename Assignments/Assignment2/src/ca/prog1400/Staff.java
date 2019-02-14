@@ -10,18 +10,18 @@ public class Staff extends Person {
         this.yearOfService = yearOfService;
     }
 
-    private double getCalculatorFee() {
+    private double getCalculatorPay() {
         return DEFAULT_SALALY + (this.yearOfService * INCREASE_SALAY);
     }
 
-    public double getBiWeeklyFee() {
+    public double getBiWeeklyPay() {
         return (DEFAULT_SALALY + (this.yearOfService * INCREASE_SALAY)) / 26;
     }
 
     @Override
     public String toString() {
-        return String.format("name= %s, address= %s, year= %d,fee=$%.2f",
-                this.name, this.address, this.yearOfService, getCalculatorFee());
+        return String.format("name= %s, address= %s, year= %d,pay=$%.2f",
+                this.name, this.address, this.yearOfService, getCalculatorPay());
     }
 
 

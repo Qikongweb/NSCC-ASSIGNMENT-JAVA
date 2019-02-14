@@ -2,111 +2,101 @@ package ca.prog1400;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
-
-
     public static void main(String[] args) {
-
-
         //Student ArrayList
         ArrayList<Student> students = new ArrayList<>();
         //Staff ArrayList
         ArrayList<Staff> staffs = new ArrayList<>();
-
-        int opt;
-
+        int userType;
         do {
-            opt = openDialogPopup("Select Student of Staff.", "Accounting App", new Object[]{"Student", "Staff", "Finish"});
-            if (opt == 0) {
-                students.add(new Student(checkValid(opt), openInputPopup("Enter Student Name"),
-                        openInputPopup("Enter Student Address")));
-            } else if (opt == 1) {
-                staffs.add(new Staff(openInputPopup("Enter Staff Name"),
-                        openInputPopup("Enter Staff Address"),
-                        checkValid(opt)));
+            userType = openDialogPopup("Select Student of Staff.", "Accounting App", new Object[]{"Student", "Staff", "Finish"});
+            if (userType == 0) {
+                students.add(new Student(checkValidInt(userType,"Enter student year(1-4)"), checkValidString("Enter Student Name"),
+                        checkValidString("Enter Student Address")));
+            } else if (userType == 1) {
+                staffs.add(new Staff(checkValidString("Enter Staff Name"),
+                        checkValidString("Enter Staff Address"),
+                        checkValidInt(userType,"Enter staff of year service")));
             } else {
-                StringBuffer sb = new StringBuffer("");
-                int idx = 1;
-                double incoming = 0;
-                double outgoing = 0;
-
-                sb.append(String.format("Students [Total: %d]", students.size()));
-                for (int i = 0; i < students.size(); i++) {
-                    sb.append("\n");
-                    sb.append(String.format("%d. %s", i + 1, students.get(i).toString()));
-                    incoming += students.get(i).getHalfFee();
-                }
-                sb.append("\n\n");
-                sb.append(String.format("Staff [Total: %d]", staffs.size()));
-                for (int i = 0; i < staffs.size(); i++) {
-                    sb.append("\n");
-                    sb.append(i + 1 + staffs.get(i).toString());
-                    outgoing += staffs.get(i).getBiWeeklyFee();
-                }
-                sb.append("\n\n");
-                sb.append(String.format("Outgoing: $%.2f \n", outgoing));
-                sb.append(String.format("Incoming: $%.2f\n", incoming));
-                sb.append(String.format("Total: $%.2f", incoming - outgoing));
-                openMessagePopup(sb.toString());
+                doFinalReport(students,staffs);
             }
-        } while (opt != 2);
+        } while (userType != 2);
 
     }
+    //method for Report
+    private static void doFinalReport(ArrayList<Student> students ,ArrayList<Staff> staffs){
+        StringBuffer sb = new StringBuffer();
+        double incoming = 0;
+        double outgoing = 0;
 
-
-    private static int checkValid(int type) {
-        String str;
-        int year = 0;
-        if (type == 0) {
-            do {
-                str = openInputPopup("Enter student year(1-4)");
-
-                //Display warning.
-                if (!str.matches("^[0-9]*$")) {
-                    openMessagePopup("Please enter a number");
-                } else {
-                    year = Integer.parseInt(str);
-                    //Check range
-                    if (year < 1 || year > 4) {
-                        openMessagePopup("Please enter a number between 1 and 4.");
-                    }
-                }
-            } while (!str.matches("^[0-9]*$") || (year < 1 || year > 4));
-
-        } else {
-            do {
-                str = openInputPopup("Enter staff of year service");
-
-                //Display warning.
-                if (!str.matches("^[0-9]*$")) {
-                    openMessagePopup("Please enter a number");
-                } else {
-                    year = Integer.parseInt(str);
-                    //Check range
-                    if (year <= 0 || year >= 30) {
-                        openMessagePopup("Please enter a number between 1 and 29.");
-                    }
-                }
-            } while (!str.matches("^[0-9]*$") || (year <= 0 || year >= 30));
+        sb.append(String.format("Students [Total: %d]", students.size()));
+        for (int i = 0; i < students.size(); i++) {
+            sb.append("\n");
+            sb.append(String.format("%d. %s", i + 1, students.get(i).toString()));
+            incoming += students.get(i).getHalfFee();
         }
+        sb.append("\n\n");
+        sb.append(String.format("Staff [Total: %d]", staffs.size()));
+        for (int i = 0; i < staffs.size(); i++) {
+            sb.append("\n");
+            sb.append(String.format("%d. %s",i + 1, staffs.get(i).toString()));
+            outgoing += staffs.get(i).getBiWeeklyPay();
+        }
+        sb.append("\n\n");
+        sb.append(String.format("Outgoing: $%.2f \n", outgoing));
+        sb.append(String.format("Incoming: $%.2f\n", incoming));
+        sb.append(String.format("Total: $%.2f", incoming - outgoing));
+        openMessagePopup(sb.toString());
+    }
+    //valid check method for Integer;
+    private static int checkValidInt(int type, String message) {
+        String [][] messageArr = {{"^[1-4]*$","Please enter a number between 1 and 4."},
+                {"^[1-9]|1[0-9]|2[0-9]*$","Please enter a number between 1 and 29."}};
 
+        HashMap<Integer, String []> userType = new HashMap<>();
+        userType.put(0,messageArr[0]);
+        userType.put(1,messageArr[1]);
 
-        return year;
+        String str;
+        do {
+            str = openInputPopup(message);
+
+            //Display warning.
+            if (!str.matches(userType.get(type)[0])) {
+                openMessagePopup(userType.get(type)[1]);
+            }
+
+        } while (!str.matches(userType.get(type)[0]));
+         return Integer.parseInt(str);
+    }
+    //valid check method for String;
+    private static String checkValidString(String message){
+        String str;
+        do {
+            str = openInputPopup(message);
+            //Display warning.
+            if (str.isEmpty() || str == null) openMessagePopup("Please enter a text.");
+        } while (str.isEmpty() || str == null);
+        return str;
     }
 
+    //method for open  showInputDialog
     private static String openInputPopup(String message) {
         return JOptionPane.showInputDialog(null,
                 message,
                 "Input",
                 JOptionPane.QUESTION_MESSAGE);
     }
-
+    //method for open showMessageDialog
     private static void openMessagePopup(String message) {
         JOptionPane.showMessageDialog(null,
                 message);
     }
 
+    //method for open showOptionDialog
     private static int openDialogPopup(String message, String title, Object[] buttons) {
         return JOptionPane.showOptionDialog(null,
                 message,
