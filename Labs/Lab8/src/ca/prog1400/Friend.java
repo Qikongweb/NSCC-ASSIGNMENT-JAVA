@@ -23,4 +23,9 @@ public class Friend extends Person {
     }
 
 
+    @Override
+    public void gotoPart() {
+        System.out.println();
+    }
+
 }

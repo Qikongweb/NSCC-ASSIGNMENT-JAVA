@@ -1,6 +1,6 @@
 package ca.prog1400;
 
-public class Person {
+public abstract class Person {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -20,6 +20,8 @@ public class Person {
         this.firstName = firstName;
         this.lastName = lastName;
         this.isInvited = isInvited;
+
+
     }
 
     public boolean isInvited() {
@@ -29,4 +31,11 @@ public class Person {
     public String getFullName(){
         return this.firstName+" "+this.lastName;
     }
+
+    //I want to this impleted subclass.
+    //TODO make make maeke
+    public abstract void gotoPart();
+
+
+
 }
