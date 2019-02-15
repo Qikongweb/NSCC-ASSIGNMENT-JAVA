@@ -42,6 +42,7 @@ public class Main {
             sb.append(String.format("%d. %s", i + 1, students.get(i).toString()));
             incoming += students.get(i).getHalfFee();
         }
+
         sb.append("\n\n");
         sb.append(String.format("Staff [Total: %d]", staffs.size()));
         for (int i = 0; i < staffs.size(); i++) {

@@ -1,9 +1,9 @@
 package ca.prog1400;
 
 public class Student extends Person {
-    private int year;
     private static final double DEFAULT_FEE = 3000;
     private static final int BONUS = 100;
+    private int year;
 
     public Student(int year, String name, String address) {
         super(name, address);
@@ -21,7 +21,7 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return String.format("name= %s, address= %s, year= %d, fee= $%.2f",
+        return String.format("name= %2s, address= %2s, year= %2d, fee= $%.2f",
                 this.name, this.address, this.year, getCalculatorFee());
     }
 }

@@ -20,7 +20,7 @@ public class Staff extends Person {
 
     @Override
     public String toString() {
-        return String.format("name= %s, address= %s, year= %d, pay= $%.2f",
+        return String.format("name= %2s, address= %2s, year= %2d, pay= $%.2f",
                 this.name, this.address, this.yearOfService, getCalculatorPay());
     }
 }
