@@ -30,7 +30,7 @@ public class Main {
 
     }
 
-    //method for Report
+    //function for Report
     private static void doFinalReport(ArrayList<Student> students, ArrayList<Staff> staffs) {
         StringBuffer sb = new StringBuffer();
         double incoming = 0;
@@ -57,7 +57,7 @@ public class Main {
         openMessagePopup(sb.toString());
     }
 
-    //valid check method for Integer;
+    //function for validated number;
     private static int checkValidInt(int type, String message) {
         String[][] messageArr = {{"^([1-4])\\s*$", "Please enter a number between 1 and 4."},
                 {"^([1-9]|[1-2][0-9])\\s*$", "Please enter a number between 1 and 29."}};
@@ -80,7 +80,7 @@ public class Main {
         } while (true);
     }
 
-    //valid check method for String;
+    //function for validated String;
     private static String checkValidString(String message) {
         String str;
         do {
@@ -94,7 +94,7 @@ public class Main {
         } while (true);
     }
 
-    //method for open  showInputDialog
+    //function for open  showInputDialog
     private static String openInputPopup(String message) {
         return JOptionPane.showInputDialog(null,
                 message,
@@ -102,13 +102,13 @@ public class Main {
                 JOptionPane.QUESTION_MESSAGE);
     }
 
-    //method for open showMessageDialog
+    //function for open showMessageDialog
     private static void openMessagePopup(String message) {
         JOptionPane.showMessageDialog(null,
                 message);
     }
 
-    //method for open showOptionDialog
+    //function for open showOptionDialog
     private static int openDialogPopup(String message, String title, Object[] buttons) {
         return JOptionPane.showOptionDialog(null,
                 message,
