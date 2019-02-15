@@ -3,6 +3,8 @@ package ca.prog1400;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,24 +12,26 @@ public class Main {
         ArrayList<Student> students = new ArrayList<>();
         //Staff ArrayList
         ArrayList<Staff> staffs = new ArrayList<>();
+
         int userType;
         do {
             userType = openDialogPopup("Select Student of Staff.", "Accounting App", new Object[]{"Student", "Staff", "Finish"});
             if (userType == 0) {
-                students.add(new Student(checkValidInt(userType,"Enter student year(1-4)"), checkValidString("Enter Student Name"),
+                students.add(new Student(checkValidInt(userType, "Enter student year(1-4)"), checkValidString("Enter Student Name"),
                         checkValidString("Enter Student Address")));
             } else if (userType == 1) {
                 staffs.add(new Staff(checkValidString("Enter Staff Name"),
                         checkValidString("Enter Staff Address"),
-                        checkValidInt(userType,"Enter staff of year service")));
+                        checkValidInt(userType, "Enter staff of year service")));
             } else {
-                doFinalReport(students,staffs);
+                doFinalReport(students, staffs);
             }
         } while (userType != 2);
 
     }
+
     //method for Report
-    private static void doFinalReport(ArrayList<Student> students ,ArrayList<Staff> staffs){
+    private static void doFinalReport(ArrayList<Student> students, ArrayList<Staff> staffs) {
         StringBuffer sb = new StringBuffer();
         double incoming = 0;
         double outgoing = 0;
@@ -42,7 +46,7 @@ public class Main {
         sb.append(String.format("Staff [Total: %d]", staffs.size()));
         for (int i = 0; i < staffs.size(); i++) {
             sb.append("\n");
-            sb.append(String.format("%d. %s",i + 1, staffs.get(i).toString()));
+            sb.append(String.format("%d. %s", i + 1, staffs.get(i).toString()));
             outgoing += staffs.get(i).getBiWeeklyPay();
         }
         sb.append("\n\n");
@@ -51,36 +55,42 @@ public class Main {
         sb.append(String.format("Total: $%.2f", incoming - outgoing));
         openMessagePopup(sb.toString());
     }
+
     //valid check method for Integer;
     private static int checkValidInt(int type, String message) {
-        String [][] messageArr = {{"^[1-4]*$","Please enter a number between 1 and 4."},
-                {"^[1-9]|1[0-9]|2[0-9]*$","Please enter a number between 1 and 29."}};
+        String[][] messageArr = {{"^([1-4])\\s*$", "Please enter a number between 1 and 4."},
+                {"^([1-9]|[1-2][0-9])\\s*$", "Please enter a number between 1 and 29."}};
 
-        HashMap<Integer, String []> userType = new HashMap<>();
-        userType.put(0,messageArr[0]);
-        userType.put(1,messageArr[1]);
+        HashMap<Integer, String[]> userType = new HashMap<>();
+        userType.put(0, messageArr[0]);
+        userType.put(1, messageArr[1]);
 
         String str;
+        Pattern p = Pattern.compile(userType.get(type)[0]);
         do {
             str = openInputPopup(message);
-
-            //Display warning.
-            if (!str.matches(userType.get(type)[0])) {
+            Matcher m = p.matcher(str);
+            if (!m.matches()) {
+                //Display warning.
                 openMessagePopup(userType.get(type)[1]);
+            } else {
+                return Integer.parseInt(m.group(1));
             }
-
-        } while (!str.matches(userType.get(type)[0]));
-         return Integer.parseInt(str);
+        } while (true);
     }
+
     //valid check method for String;
-    private static String checkValidString(String message){
+    private static String checkValidString(String message) {
         String str;
         do {
             str = openInputPopup(message);
-            //Display warning.
-            if (str.isEmpty() || str == null) openMessagePopup("Please enter a text.");
-        } while (str.isEmpty() || str == null);
-        return str;
+            if (str == null || str.isEmpty()) {
+                //Display warning.
+                openMessagePopup("Please enter a text.");
+            } else {
+                return str;
+            }
+        } while (true);
     }
 
     //method for open  showInputDialog
@@ -90,6 +100,7 @@ public class Main {
                 "Input",
                 JOptionPane.QUESTION_MESSAGE);
     }
+
     //method for open showMessageDialog
     private static void openMessagePopup(String message) {
         JOptionPane.showMessageDialog(null,
