@@ -29,18 +29,14 @@ public class Main {
         } while (userType != 2);
 
     }
-
     //function for Report
     private static void doFinalReport(ArrayList<Student> students, ArrayList<Staff> staffs) {
         StringBuffer sb = new StringBuffer();
-        double incoming = 0;
-        double outgoing = 0;
 
         sb.append(String.format("Students [Total: %d]", students.size()));
         for (int i = 0; i < students.size(); i++) {
             sb.append("\n");
             sb.append(String.format("%d. %s", i + 1, students.get(i).toString()));
-            incoming += students.get(i).getHalfFee();
         }
 
         sb.append("\n\n");
@@ -48,12 +44,11 @@ public class Main {
         for (int i = 0; i < staffs.size(); i++) {
             sb.append("\n");
             sb.append(String.format("%d. %s", i + 1, staffs.get(i).toString()));
-            outgoing += staffs.get(i).getBiWeeklyPay();
         }
         sb.append("\n\n");
-        sb.append(String.format("Outgoing: $%.2f \n", outgoing));
-        sb.append(String.format("Incoming: $%.2f\n", incoming));
-        sb.append(String.format("Total: $%.2f", incoming - outgoing));
+        sb.append(String.format("Outgoing: $%.2f \n", Staff.totalStaffPay(staffs)));
+        sb.append(String.format("Incoming: $%.2f\n", Student.totalStudentFee(students)));
+        sb.append(String.format("Total: $%.2f", Student.totalStudentFee(students) - Staff.totalStaffPay(staffs)));
         openMessagePopup(sb.toString());
     }
 
@@ -85,7 +80,7 @@ public class Main {
         String str;
         do {
             str = openInputPopup(message);
-            if (str == null || str.isEmpty()) {
+            if (str == null || str.isEmpty() || str.trim().length()<=0) {
                 //Display warning.
                 openMessagePopup("Please enter a text.");
             } else {
