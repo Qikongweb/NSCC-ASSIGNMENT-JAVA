@@ -29,6 +29,8 @@ public class Main {
         } while (userType != 2);
 
     }
+
+
     //function for Report
     private static void doFinalReport(ArrayList<Student> students, ArrayList<Staff> staffs) {
         StringBuffer sb = new StringBuffer();
@@ -54,12 +56,9 @@ public class Main {
 
     //function for validated number;
     private static int checkValidInt(int type, String message) {
-        String[][] messageArr = {{"^([1-4])\\s*$", "Please enter a number between 1 and 4."},
-                {"^([1-9]|[1-2][0-9])\\s*$", "Please enter a number between 1 and 29."}};
-
         HashMap<Integer, String[]> userType = new HashMap<>();
-        userType.put(0, messageArr[0]);
-        userType.put(1, messageArr[1]);
+        userType.put(0, new String[] {"^([1-4])\\s*$", "Please enter a number between 1 and 4."});
+        userType.put(1, new String[] {"^([1-9]|[1-2][0-9])\\s*$", "Please enter a number between 1 and 29."});
 
         String str;
         Pattern p = Pattern.compile(userType.get(type)[0]);
