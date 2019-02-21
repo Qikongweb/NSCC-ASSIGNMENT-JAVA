@@ -61,10 +61,10 @@ public class Main {
         userType.put(1, new String[] {"^([1-9]|[1-2][0-9])\\s*$", "Please enter a number between 1 and 29."});
 
         String str;
-        Pattern p = Pattern.compile(userType.get(type)[0]);
+        Pattern p = Pattern.compile(userType.get(type)[0]);    //define pattern
         do {
             str = openInputPopup(message);
-            Matcher m = p.matcher(str);
+            Matcher m = p.matcher(str);  // Check pattern including string pattern.
             if (!m.matches()) {
                 //Display warning.
                 openMessagePopup(userType.get(type)[1]);
