@@ -53,7 +53,6 @@ public class Main {
         sb.append(String.format("Total: $%.2f", Student.totalStudentFee(students) - Staff.totalStaffPay(staffs)));
         openMessagePopup(sb.toString());
     }
-
     //function for validated number;
     private static int checkValidInt(int type, String message) {
         HashMap<Integer, String[]> userType = new HashMap<>();

@@ -32,4 +32,5 @@ public class Staff extends Person {
         return String.format("name= %2s, address= %2s, year= %2d, pay= $%.2f",
                 getName(),getAddress(), this.yearOfService, this.pay);
     }
+
 }
