@@ -38,7 +38,7 @@ public class SwingDemo extends JFrame {
         JButton button = new JButton();
         button.setText("Switch Panels");
         button.setBounds(70,200, 120, 20);
-        panelOne.add(button);
+        //panelOne.add(button);
         //add button event !
         button.addActionListener(new ActionListener() {
             @Override
