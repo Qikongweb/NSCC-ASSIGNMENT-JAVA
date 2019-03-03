@@ -1,4 +1,4 @@
-package prog1400;
+package ca.prog1400;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
