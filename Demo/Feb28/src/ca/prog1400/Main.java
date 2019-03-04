@@ -1,7 +1,5 @@
 package ca.prog1400;
 
-import ca.prog1400.ui.DemoUI;
-
 import java.awt.*;
 
 public class Main {

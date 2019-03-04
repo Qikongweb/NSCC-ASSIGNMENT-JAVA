@@ -1,4 +1,4 @@
-package ca.prog1400.ui;
+package ca.prog1400;
 
 import javax.swing.*;
 import java.awt.*;
