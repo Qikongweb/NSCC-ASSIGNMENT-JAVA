@@ -1,4 +1,4 @@
-package ca.prog1400;
+package ca.prog1400.Classes;
 
 public abstract class Weapon {
     private int weight ;
@@ -12,8 +12,11 @@ public abstract class Weapon {
 
     public Weapon(String type){
         this.type = type;
-        this.weight = getRandomBetweenRange(10,20);
-        this.attackModifier = getRandomBetweenRange(23,34);
+    }
+    public Weapon(String type,int weight,int attackModifier){
+        this.type = type;
+        this.weight = weight;
+        this.attackModifier = attackModifier;
     }
 
     public int getWeight() {
@@ -22,15 +25,6 @@ public abstract class Weapon {
 
     public int getAttackModifier() {
         return attackModifier;
-    }
-
-    public void doRandomAbility(){
-        this.weight = getRandomBetweenRange(1,300);
-        this.attackModifier = getRandomBetweenRange(1,300);
-    }
-
-    private static int getRandomBetweenRange(int min, int max){
-        return (int)((Math.random()*((max-min)+1))+min);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package ca.prog1400;
+package ca.prog1400.Classes;
 
 public  class Monster extends Character {
     public Monster(String name,String type) {
@@ -9,3 +9,4 @@ public  class Monster extends Character {
     }
 
 }
+

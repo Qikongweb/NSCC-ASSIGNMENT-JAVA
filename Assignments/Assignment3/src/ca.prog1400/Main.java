@@ -1,11 +1,22 @@
 package ca.prog1400;
 
+import ca.prog1400.GUI.MainFrame;
+
+import java.awt.*;
+
 public class Main {
     public static void main(String[] args) {
-        Warrior warrior = new Warrior();
-        Hammer hammer = new Hammer();
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                  MainFrame frame = new MainFrame();
 
-        System.out.println(Player.getSummary(warrior,hammer));
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
     }

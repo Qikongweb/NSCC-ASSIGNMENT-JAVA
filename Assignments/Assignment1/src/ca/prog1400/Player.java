@@ -6,8 +6,7 @@ public class Player {
     private int assists;    //Player Assists
 
 
-    public Player(String name) {
-        this.name = name;
+    public Player(String name){
     }
 
     public String getName() {

@@ -1,4 +1,4 @@
-package ca.prog1400;
+package ca.prog1400.Classes;
 
 public abstract class Character {
     private String name;
@@ -10,23 +10,25 @@ public abstract class Character {
 
 
     private String type;
-
+    //constructor for random stats
     public Character(String name) {
         this.name = name;
-        this.hp = getRandomBetweenRange(1,300);
-        this.defense = getRandomBetweenRange(1,300);
-        this.agility = getRandomBetweenRange(1,300);
-        this.baseAttack = getRandomBetweenRange(1,300);
     }
 
     public Character(String name,String type) {
         this.name = name;
         this.type = type;
-        this.hp = getRandomBetweenRange(1,300);
-        this.defense = getRandomBetweenRange(1,300);
-        this.agility = getRandomBetweenRange(1,300);
-        this.baseAttack = getRandomBetweenRange(1,300);
     }
+    //
+    public Character(String name, String type,int hp, int defense, int agility, int baseAttack) {
+        this.name = name;
+        this.hp = hp;
+        this.defense = defense;
+        this.agility = agility;
+        this.baseAttack = baseAttack;
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Character{" +
@@ -61,11 +63,12 @@ public abstract class Character {
     public String getType() {
         return type;
     }
+
     public void doRandomAbility(){
-        this.hp = getRandomBetweenRange(1,300);
-        this.defense = getRandomBetweenRange(1,300);
-        this.agility = getRandomBetweenRange(1,300);
-        this.baseAttack = getRandomBetweenRange(1,300);
+        this.hp = getRandomBetweenRange(1,100);
+        this.defense = getRandomBetweenRange(1,100);
+        this.agility = getRandomBetweenRange(1,100);
+        this.baseAttack = getRandomBetweenRange(1,100);
     }
 
     private  int getRandomBetweenRange(int min, int max){
